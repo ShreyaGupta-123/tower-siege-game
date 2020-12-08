@@ -8,7 +8,6 @@ var box1,box2,box3,box4,box5,box6,box7,box8,box9;
 var box10,box11,box12,box13,box14,box15,box16,box17,box18;
 var stone,slingShot;
 var bg, backgroundImage;
-var attach;
 var score=0;
 
 function preload(){
@@ -48,7 +47,7 @@ box17=new Box(920,140,20,30);
 box18=new Box(900,110,20,30);
 
 stone=new Stone(100,400,20);
- attach=createButton(30,30);
+
 slingShot=new Slingshot(stone.body,{x:200,y:400});
 
 }
@@ -110,16 +109,9 @@ function draw() {
   box18.score();
 
   stone.display();
- 
-   attach.mousePressed(()=>{
-    slingShot.attach(stone.body);
-  })
-  
 
   slingShot.display();
   drawSprites();
- 
- 
 }
 
 function mouseDragged(){
@@ -130,10 +122,13 @@ function mouseReleased(){
   slingShot.fly();
 }
 
+function keyPressed(){
+  if(keyCode===32){
+    slingShot.attach(stone.body);
+  }
 
-
-
-
+ 
+}
 
 
 async function getTime(){
